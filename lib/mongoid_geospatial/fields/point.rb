@@ -5,6 +5,8 @@ module Mongoid
       attr_accessor :x, :y
 
       def initialize(x=nil, y=nil)
+       #ap "regular point init"
+
         @x, @y = x, y
       end
 
@@ -64,11 +66,14 @@ module Mongoid
 
         # Database -> Object
         def demongoize(object)
+          #ap "point class demongo: #{object}"
+          #ap caller
           return unless object
           Point.new(*object)
         end
 
         def mongoize(object)
+          #ap "point class mongoize: #{object}"
           case object
           when Point then object.mongoize
           when Array then object.to_xy
