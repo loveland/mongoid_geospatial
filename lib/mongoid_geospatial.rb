@@ -7,8 +7,6 @@ require 'mongoid_geospatial/extensions/rgeo_spherical_point_impl'
 require 'mongoid_geospatial/helpers/spatial'
 require 'mongoid_geospatial/helpers/delegate'
 
-require 'mongoid_geospatial/fields/geometry_field'
-
-%w{point circle box line polygon}.each do |type|
+%w{geometry point}.each do |type|
   require "mongoid_geospatial/fields/#{type}"
 end
