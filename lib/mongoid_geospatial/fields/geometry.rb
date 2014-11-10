@@ -17,6 +17,9 @@ module RGeo
       end
       alias :to_hash :to_hsh
 
+      def to_geo
+        self
+      end
 
       class << self
 
@@ -51,6 +54,12 @@ module RGeo
       def to_a
         [self.x, self.y]
       end
+   
+      def to_geo
+        self
+      end
+
+      class << self
       
       class << self
         def demongoize(object)
