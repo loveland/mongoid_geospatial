@@ -23,11 +23,8 @@ module Mongoid
 
         # Database -> Object
         def demongoize(object)
-          #ap "rgeo poly class demongo"
           return unless object
           Polygon.new(object)
-          #f = (Mongoid::Geospatial.factory || RGeo::Geographic.spherical_factory)
-          #RGeo::GeoJSON.decode(object, :geo_factory => f)
         end
 
         def mongoize(object)

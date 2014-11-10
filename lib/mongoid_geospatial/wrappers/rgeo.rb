@@ -69,5 +69,37 @@ module Mongoid
       
     end
     
+    class MultiPolygon
+
+      def to_geo
+        ap "rgeo overriden multipolygon to_geo"
+        f = (Mongoid::Geospatial.factory || RGeo::Geographic.spherical_factory)
+        return RGeo::GeoJSON.decode(@geojson, :geo_factory => f)
+      end
+      
+      # Database -> Object
+      def demongoize(object)
+        #ap "rgeo poly class demongo"
+        return unless object
+        f = (Mongoid::Geospatial.factory || RGeo::Geographic.spherical_factory)
+        RGeo::GeoJSON.decode(object, :geo_factory => f)
+      end
+
+      def self.mongoize(obj)
+        #ap "rgeo overriden polygon mongoize"
+        if RGeo::Feature::MultiPolygon.check_type(obj)
+          ap "multipoly: gonna geojson encode the obj"
+          RGeo::GeoJSON.encode(obj)
+        elsif obj.is_a? MultiPolygon
+          ap "just obj.mongoize cause its already a mongoid MultiPolygon"
+          obj.mongoize
+        else
+          ap "duno what to do with it"
+          obj
+        end
+      end
+      
+    end
+    
   end
 end
