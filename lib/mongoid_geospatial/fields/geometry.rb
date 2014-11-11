@@ -60,8 +60,6 @@ module RGeo
       end
 
       class << self
-      
-      class << self
         def demongoize(object)
           o = case object
           when Array
