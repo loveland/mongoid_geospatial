@@ -73,7 +73,7 @@ module RGeo
         end
         
         def mongoize(object)
-          object.to_a
+          defined?(object.to_a) ? object.to_a : [object.x, object.y]
         end
         
         def evolve(object)
