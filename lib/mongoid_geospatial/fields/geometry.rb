@@ -12,10 +12,10 @@ module RGeo
         self.class.mongoize(self)
       end
 
-      def to_hsh
-        self.mongoize
-      end
-      alias :to_hash :to_hsh
+      #def to_hsh
+      #  self.mongoize
+      #end
+      #alias :to_hash :to_hsh
 
       def to_geo
         self
